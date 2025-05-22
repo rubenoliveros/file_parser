@@ -1,0 +1,63 @@
+{
+    "transformations": [
+        {
+            "object": {
+                "origin": "s3://alejo-parsers/workspace1/sources/rutafuente1/miarchivo1.zip",
+                "destiny": "s3://alejo-parsers/workspace1/sources/rutafuente2/",
+                "parser": "unzip",
+                "classname": "ZipFileParser"
+            },
+            "kwargs": {
+                "scripts_path": "scripts/",
+                "scripts_bucket": "alejo-scripts"
+            }
+        },
+        {
+            "object": {
+                "origin": "s3://alejo-parsers/workspace1/sources/rutafuente1/miarchivo2.xml",
+                "destiny": "s3://alejo-parsers/workspace1/sources/rutafuente2/",
+                "parser": "xml_to_csv",
+                "classname": "XmlToCsvParser"
+            },
+            "kwargs": {
+                "scripts_path": "scripts/",
+                "scripts_bucket": "alejo-scripts"
+            }
+        },
+        {
+            "object": {
+                "origin": "s3://alejo-parsers/workspace1/sources/rutafuente1/unknown.xyz",
+                "destiny": "s3://alejo-parsers/workspace1/sources/rutafuente2/",
+                "parser": "unknown_parser",
+                "classname": "UnknownParser"
+            },
+            "kwargs": {
+                "scripts_path": "scripts/",
+                "scripts_bucket": "alejo-scripts"
+            }
+        },
+        {
+            "object": {
+                "origin": "s3://alejo-parsers/non_existent_folder/non_existent_file.txt",
+                "destiny": "s3://alejo-parsers/invalid_destination/",
+                "parser": "xml_to_csv",
+                "classname": "XmlToCsvParser"
+            },
+            "kwargs": {
+                "scripts_path": "scripts/",
+                "scripts_bucket": "alejo-scripts"
+            }
+        },
+        {
+            "object": {
+                "destiny": "s3://alejo-parsers/invalid_destination/",
+                "parser": "xml_to_csv",
+                "classname": "XmlToCsvParser"
+            },
+            "kwargs": {
+                "scripts_path": "scripts/",
+                "scripts_bucket": "alejo-scripts"
+            }
+        }
+    ]
+} 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <header>
+        <timestamp>2024-03-20T10:30:00</timestamp>
+        <version>1.0</version>
+    </header>
+    <data>
+        <record id="1">
+            <name>John Doe</name>
+            <email>john.doe@example.com</email>
+            <address>
+                <street>123 Main St</street>
+                <city>New York</city>
+                <country>USA</country>
+            </address>
+        </record>
+        <record id="2">
+            <name>Jane Smith</name>
+            <email>jane.smith@example.com</email>
+            <address>
+                <street>456 Oak Ave</street>
+                <city>Los Angeles</city>
+                <country>USA</country>
+            </address>
+        </record>
+    </data>
+    <footer>
+        <total_records>2</total_records>
+        <generated_by>XML Test Generator</generated_by>
+    </footer>
+</root> 

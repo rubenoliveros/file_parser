@@ -4,6 +4,8 @@ A Python application that processes files based on job definitions. It supports 
 - Extracting ZIP files
 - Converting XML files to CSV format
 
+[![Python](https://img.shields.io/badge/Python-100%25-blue)](https://github.com/rubenoliveros/file_parser)
+
 > **Note**: This project simulates S3 paths locally. Any path starting with `s3://` will be automatically converted to a local path by replacing `s3://` with `s3_simulation/`. For example, `s3://alejo-parsers/file.zip` becomes `s3_simulation/alejo-parsers/file.zip`.
 
 > **Note**: The job definition file path is hardcoded as `job_definition.json` in `main.py`. Make sure to place your job definition file in the project root directory.
@@ -34,7 +36,12 @@ A Python application that processes files based on job definitions. It supports 
 
 ## Installation
 
-1. Clone the repository
+1. Clone the repository:
+```bash
+git clone https://github.com/rubenoliveros/file_parser.git
+cd file_parser
+```
+
 2. Install dependencies:
 ```bash
 pip install pandas lxml
@@ -114,4 +121,8 @@ The application handles various error cases:
 - File not found errors
 - Processing errors
 
-All errors are logged with detailed messages for debugging. 
+All errors are logged with detailed messages for debugging.
+
+## Contributing
+
+Feel free to submit issues and enhancement requests! 

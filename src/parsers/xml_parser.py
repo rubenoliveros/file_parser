@@ -1,35 +1,44 @@
 import pandas as pd
 from pathlib import Path
 from lxml import etree
+from datetime import datetime
 import logging
 from .base_parser import BaseParser
 
 class XmlToCsvParser(BaseParser):
-    def convert(self):
-        """Convert XML file to CSV format."""
+    def parse(self):
+        """Convert XML file to CSV format with name, email, street, city, country headers."""
         try:
-            source_path = Path(self.origin)
-            dest_path = Path(self.destiny)
+            if not Path(self.origin).exists():
+                logging.error(f"Source file {self.origin} does not exist")
+                return False
 
-            tree = etree.parse(source_path)
+            # Create destiny directory if it doesn't exist
+            Path(self.destiny).mkdir(parents=True, exist_ok=True)
+
+            # Parse XML file
+            tree = etree.parse(self.origin)
             root = tree.getroot()
 
+            # Extract data
             data = []
-            for element in root.iter():
-                if element.text and element.text.strip():
-                    data.append({
-                        'tag': element.tag,
-                        'text': element.text.strip(),
-                        'parent': element.getparent().tag if element.getparent() is not None else None
-                    })
+            for record in root.findall('.//record'):
+                record_data = {
+                    'name': record.findtext('name', ''),
+                    'email': record.findtext('email', ''),
+                    'street': record.findtext('address/street', ''),
+                    'city': record.findtext('address/city', ''),
+                    'country': record.findtext('address/country', '')
+                }
+                data.append(record_data)
 
-            df = pd.DataFrame(data)
-            output_file = dest_path / f"{source_path.stem}.csv"
-            df.to_csv(output_file, index=False)
-
-            logging.info(f"Converted {source_path} to {output_file}")
+            columns = ['name', 'email', 'street', 'city', 'country']
+            df = pd.DataFrame(data, columns=columns)
+            output_path = Path(self.destiny) / f"{Path(self.origin).stem}.csv"
+            df.to_csv(output_path, index=False)
+            logging.info(f"Successfully converted {self.origin} to {output_path}")
             return True
 
         except Exception as e:
-            logging.error(f"Failed to convert XML file '{self.origin}'. Reason: {str(e)}")
+            logging.error(f"Error processing XML file: {str(e)}")
             return False 

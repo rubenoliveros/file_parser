@@ -32,7 +32,7 @@ def process_transformations(job_definition):
                 if not parser.extract():
                     success = False
             elif obj['parser'] == 'xml_to_csv':
-                if not parser.convert():
+                if not parser.parse():
                     success = False
             else:
                 success = False

@@ -4,8 +4,6 @@ A Python application that processes files based on job definitions. It supports 
 - Extracting ZIP files
 - Converting XML files to CSV format
 
-[![Python](https://img.shields.io/badge/Python-100%25-blue)](https://github.com/rubenoliveros/file_parser)
-
 > **Note**: This project simulates S3 paths locally. Any path starting with `s3://` will be automatically converted to a local path by replacing `s3://` with `s3_simulation/`. For example, `s3://alejo-parsers/file.zip` becomes `s3_simulation/alejo-parsers/file.zip`.
 
 > **Note**: The job definition file path is hardcoded as `job_definition.json` in `main.py`. Make sure to place your job definition file in the project root directory.
@@ -98,7 +96,7 @@ python3 src/main.py
 
 2. **XML to CSV Parser** (`xml_to_csv`)
    - Converts XML files to CSV format
-   - Extracts tag names, text content, and parent tags
+   - CSV headers: name, email, street, city, country
    - Example: `"parser": "xml_to_csv"`
 
 ## Logging

@@ -1,3 +1,0 @@
-This is test file 1
-It contains some sample text
-For testing the ZIP parser 
